@@ -10,8 +10,8 @@ The following table outlines MITRE ATT&CK for ICS coverage provided by the M-Bus
 
 |Collection|Discovery|Inhibit-Response-Function|
 |:--|:--|:--|
-|Monitor Process State|Remote System Discovery|Device Restart/Shutdown|
- | |Denial of Service|
+|Monitor Process State|Remote System Discovery|Denial of Service|
+ | |Device Restart/Shutdown|
 
 ### Ability Overview Tables
 The following table(s) list each plugin ability by their corresponding tactic.
@@ -38,7 +38,7 @@ The following table(s) list each plugin ability by their corresponding tactic.
 This section describes the main components of the plugin and how they interface.
 
 ### Block Diagram
-![block diagram](assets/mbus_diagram.jpg)
+![block diagram](assets/mbus_diagram.png)
 
 The M-Bus plugin exposes several new protocol specific abilities to your Caldera instance. The abilities are executed from a host running a Caldera agent via the corresponding payload. Abilities must target devices that support the M-Bus protocol to achieve described effects. By default the plugin will use __5000__ for all communication.
 
