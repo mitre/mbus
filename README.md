@@ -1,7 +1,9 @@
 # Caldera for OT plugin: M-Bus
 
+> Contributed by Palo Alto Networks. Not maintained by MITRE: the abilities and their pinned dependencies are frozen as contributed and will not be updated.
+
 A [Caldera for OT](https://github.com/mitre/caldera-ot) plugin supplying
-[Caldera](https://github.com/mitre/caldera) with **Meter-Bus (M-Bus, EN 13757)**
+[Apache Caldera](https://github.com/apache/caldera) with **Meter-Bus (M-Bus, EN 13757)**
 protocol TTPs mapped to MITRE ATT&CK® for ICS. This is part of a series of plugins
 that provide added threat emulation capability for Operational Technology (OT)
 environments.
@@ -28,7 +30,7 @@ once the Caldera server is running.
 ## Installation
 
 To run Caldera along with the M-Bus plugin:
-1. Download Caldera as detailed in the [Installation Guide](https://github.com/mitre/caldera)
+1. Download Apache Caldera as detailed in the [Installation Guide](https://github.com/apache/caldera)
 2. Install this plugin into Caldera's plugin directory as `caldera/plugins/mbus`.
    Clone the [Caldera for OT](https://github.com/mitre/caldera-ot) collection and
    move the `mbus` directory into place:
@@ -51,8 +53,7 @@ the target device by the Caldera agent. To execute, the payloads must be compati
 with the target device operating system. The Linux payload (`mbus_cli`) ships in
 [`payloads/`](payloads/); the Windows (`mbus_cli.exe`) and macOS (`mbus_cli_darwin`)
 payloads are produced by the build workflow in
-[`.github/workflows/ci.yaml`](.github/workflows/ci.yaml) and published as release
-assets. The Linux payload is built on Ubuntu 22.04 (`glibc` 2.35), so it requires
+[`.github/workflows/ci.yaml`](.github/workflows/ci.yaml) and committed into the plugin's [`payloads/`](payloads/) directory by the build workflow. The Linux payload is built on Ubuntu 22.04 (`glibc` 2.35), so it requires
 `glibc` 2.35 or greater; rebuilding it on an older distribution lowers that floor.
 For more information on compatibility, see the
 [fieldmanual documentation](docs/mbus.md#payload) and the
@@ -87,13 +88,14 @@ collected meter records can seed later abilities.
 
 ### A note on "M-Bus - Broadcast Reset"
 
-The broadcast reset ability sends an application reset to the M-Bus broadcast address,
-which resets every device on the bus at once. It is mapped to T0814 Denial of Service
-and is disruptive by design; use it only against targets you are authorized to test.
+The broadcast reset ability sends a broadcast SND_NKE (address 0xFF) to the M-Bus, which
+re-initializes the link layer of every device on the bus at once. It is mapped to T0814
+Denial of Service and is disruptive by design; use it only against targets you are
+authorized to test.
 
 ## Authors
 
-This plugin was contributed by **Asher Davila** and **Malav Vyas**.
+This plugin was contributed by **Asher Davila** ([AsherDLL](https://github.com/AsherDLL)) and **Malav Vyas** ([malavvyas](https://github.com/malavvyas)) of Palo Alto Networks.
 
 ## License
 

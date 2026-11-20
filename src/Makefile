@@ -1,4 +1,3 @@
-# SPDX-License-Identifier: Apache-2.0
 # Build the mbus_cli payload with PyInstaller.
 #
 #   make build/local     build for the host platform

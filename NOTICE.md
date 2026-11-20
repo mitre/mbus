@@ -1,8 +1,10 @@
 # NOTICE
 
-mbus, an M-Bus (Meter-Bus) plugin for MITRE Caldera.
+mbus, an M-Bus (Meter-Bus) plugin for Caldera for OT.
 
-Copyright (c) 2026 Asher Davila and Malav Vyas.
+Copyright (c) 2026 Asher Davila ([AsherDLL](https://github.com/AsherDLL)) and Malav Vyas ([malavvyas](https://github.com/malavvyas)), Palo Alto Networks.
+
+Contributed to MITRE Caldera for OT; this repository is not maintained by MITRE.
 
 Licensed under the Apache License, Version 2.0 (see `LICENSE`).
 

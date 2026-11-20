@@ -1,4 +1,3 @@
-# SPDX-License-Identifier: Apache-2.0
 """Unit tests for the mbus_cli action library.
 
 Stands up a tiny in-process M-Bus/TCP server that answers SND_NKE with an ACK and
