@@ -1,4 +1,3 @@
-# SPDX-License-Identifier: Apache-2.0
 """M-Bus (EN 13757) master actions over TCP.
 
 Frames are built by hand (M-Bus framing is small and well-defined); read responses
