@@ -1,4 +1,3 @@
-# SPDX-License-Identifier: Apache-2.0
 """mbus_cli - a command-line M-Bus (Meter-Bus) client for adversary emulation.
 
 A generic client that speaks M-Bus over TCP to any meter or TCP/M-Bus gateway.

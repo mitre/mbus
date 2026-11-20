@@ -1,5 +1,4 @@
 # -*- mode: python ; coding: utf-8 -*-
-# SPDX-License-Identifier: Apache-2.0
 # PyInstaller spec: bundle mbus_cli into a single executable, including pyMeterBus.
 from PyInstaller.utils.hooks import collect_all
 
