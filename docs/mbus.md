@@ -11,7 +11,7 @@ The following table outlines MITRE ATT&CK for ICS coverage provided by the M-Bus
 |Collection|Discovery|Inhibit-Response-Function|
 |:--|:--|:--|
 |Monitor Process State|Remote System Discovery|Denial of Service|
- | |Device Restart/Shutdown|
+| | |Device Restart/Shutdown|
 
 ### Ability Overview Tables
 The following table(s) list each plugin ability by their corresponding tactic.
@@ -54,7 +54,7 @@ The following libraries were used to build the M-Bus payloads:
 
 |Library|Version|License|
 |:--|:--|:--|
-|[pyMeterBus](https://pypi.org/project/pyMeterBus/)|[0.8.x](https://pypi.org/project/pyMeterBus/)|[BSD-3-Clause](https://github.com/ganehag/pyMeterBus/blob/master/LICENSE)|
+|[pyMeterBus](https://pypi.org/project/pyMeterBus/)|[0.8.5](https://pypi.org/project/pyMeterBus/0.8.5/)|[BSD-3-Clause](https://github.com/ganehag/pyMeterBus/blob/master/LICENSE)|
 
 ## Usage
 This section describes how to initially deploy and execute the abilities present within the M-Bus plugin.
@@ -71,184 +71,208 @@ This section describes how to initially deploy and execute the abilities present
 #### M-Bus - Read Meter
 Read an M-Bus meter's data (REQ_UD2 -> RSP_UD), disclosing its measured values
 (volume, flow, temperature, ...) and their units.
-  
 
-__Usage:__  
-linux: (sh)  
-```
-COMMAND>> ./mbus_cli #{mbus.server.ip} --port #{mbus.server.port} read #{mbus.address}
+__Ability Command:__
+<details open>
+<summary>Windows (psh)</summary>
+<br>
 
+```caldera
+.\mbus_cli.exe #{mbus.server.ip} --port #{mbus.server.port} read #{mbus.address}
 ```  
 
-__Facts:__  
-- `mbus.server.ip`: Target M-Bus-over-TCP gateway IP address
-- `mbus.server.port`: Target M-Bus-over-TCP port (default 5000)
-- `mbus.address`: M-Bus primary address of the meter
-windows: (psh)  
-```
-COMMAND>> .\mbus_cli.exe #{mbus.server.ip} --port #{mbus.server.port} read #{mbus.address}
+</details>
+<details>
+<summary>Linux (sh)</summary>
+<br>
 
+```caldera
+./mbus_cli #{mbus.server.ip} --port #{mbus.server.port} read #{mbus.address}
 ```  
 
-__Facts:__  
-- `mbus.server.ip`: Target M-Bus-over-TCP gateway IP address
-- `mbus.server.port`: Target M-Bus-over-TCP port (default 5000)
-- `mbus.address`: M-Bus primary address of the meter
-darwin: (sh)  
-```
-COMMAND>> ./mbus_cli_darwin #{mbus.server.ip} --port #{mbus.server.port} read #{mbus.address}
+</details>
+<details>
+<summary>Darwin (sh)</summary>
+<br>
 
+```caldera
+./mbus_cli_darwin #{mbus.server.ip} --port #{mbus.server.port} read #{mbus.address}
 ```  
 
+</details>
+<br>
+
 __Facts:__  
-- `mbus.server.ip`: Target M-Bus-over-TCP gateway IP address
-- `mbus.server.port`: Target M-Bus-over-TCP port (default 5000)
-- `mbus.address`: M-Bus primary address of the meter
+| Name | Description | Type |
+|:-----|:------------|:----:|
+| `mbus.server.ip` | Target M-Bus-over-TCP gateway IP address | string |
+| `mbus.server.port` | Target M-Bus-over-TCP port (default 5000) | int |
+| `mbus.address` | M-Bus primary address of the meter | int |
+
 #### M-Bus - Ping Address
 Probe an M-Bus primary address with SND_NKE and check for an ACK (0xE5),
 confirming a meter is present at that address.
-  
 
-__Usage:__  
-linux: (sh)  
-```
-COMMAND>> ./mbus_cli #{mbus.server.ip} --port #{mbus.server.port} ping #{mbus.address}
+__Ability Command:__
+<details open>
+<summary>Windows (psh)</summary>
+<br>
 
+```caldera
+.\mbus_cli.exe #{mbus.server.ip} --port #{mbus.server.port} ping #{mbus.address}
 ```  
 
-__Facts:__  
-- `mbus.server.ip`: Target M-Bus-over-TCP gateway IP address
-- `mbus.server.port`: Target M-Bus-over-TCP port (default 5000)
-- `mbus.address`: M-Bus primary address of the meter
-windows: (psh)  
-```
-COMMAND>> .\mbus_cli.exe #{mbus.server.ip} --port #{mbus.server.port} ping #{mbus.address}
+</details>
+<details>
+<summary>Linux (sh)</summary>
+<br>
 
+```caldera
+./mbus_cli #{mbus.server.ip} --port #{mbus.server.port} ping #{mbus.address}
 ```  
 
-__Facts:__  
-- `mbus.server.ip`: Target M-Bus-over-TCP gateway IP address
-- `mbus.server.port`: Target M-Bus-over-TCP port (default 5000)
-- `mbus.address`: M-Bus primary address of the meter
-darwin: (sh)  
-```
-COMMAND>> ./mbus_cli_darwin #{mbus.server.ip} --port #{mbus.server.port} ping #{mbus.address}
+</details>
+<details>
+<summary>Darwin (sh)</summary>
+<br>
 
+```caldera
+./mbus_cli_darwin #{mbus.server.ip} --port #{mbus.server.port} ping #{mbus.address}
 ```  
 
+</details>
+<br>
+
 __Facts:__  
-- `mbus.server.ip`: Target M-Bus-over-TCP gateway IP address
-- `mbus.server.port`: Target M-Bus-over-TCP port (default 5000)
-- `mbus.address`: M-Bus primary address of the meter
+| Name | Description | Type |
+|:-----|:------------|:----:|
+| `mbus.server.ip` | Target M-Bus-over-TCP gateway IP address | string |
+| `mbus.server.port` | Target M-Bus-over-TCP port (default 5000) | int |
+| `mbus.address` | M-Bus primary address of the meter | int |
+
 #### M-Bus - Scan Bus
 Sweep a range of M-Bus primary addresses (SND_NKE to each), enumerating the
 meters present on the bus / behind the gateway.
-  
 
-__Usage:__  
-linux: (sh)  
-```
-COMMAND>> ./mbus_cli #{mbus.server.ip} --port #{mbus.server.port} scan --start #{mbus.scan.start} --end #{mbus.scan.end}
+__Ability Command:__
+<details open>
+<summary>Windows (psh)</summary>
+<br>
 
+```caldera
+.\mbus_cli.exe #{mbus.server.ip} --port #{mbus.server.port} scan --start #{mbus.scan.start} --end #{mbus.scan.end}
 ```  
 
-__Facts:__  
-- `mbus.server.ip`: Target M-Bus-over-TCP gateway IP address
-- `mbus.server.port`: Target M-Bus-over-TCP port (default 5000)
-- `mbus.scan.start`: First primary address in the scan range
-- `mbus.scan.end`: Last primary address in the scan range
-windows: (psh)  
-```
-COMMAND>> .\mbus_cli.exe #{mbus.server.ip} --port #{mbus.server.port} scan --start #{mbus.scan.start} --end #{mbus.scan.end}
+</details>
+<details>
+<summary>Linux (sh)</summary>
+<br>
 
+```caldera
+./mbus_cli #{mbus.server.ip} --port #{mbus.server.port} scan --start #{mbus.scan.start} --end #{mbus.scan.end}
 ```  
 
-__Facts:__  
-- `mbus.server.ip`: Target M-Bus-over-TCP gateway IP address
-- `mbus.server.port`: Target M-Bus-over-TCP port (default 5000)
-- `mbus.scan.start`: First primary address in the scan range
-- `mbus.scan.end`: Last primary address in the scan range
-darwin: (sh)  
-```
-COMMAND>> ./mbus_cli_darwin #{mbus.server.ip} --port #{mbus.server.port} scan --start #{mbus.scan.start} --end #{mbus.scan.end}
+</details>
+<details>
+<summary>Darwin (sh)</summary>
+<br>
 
+```caldera
+./mbus_cli_darwin #{mbus.server.ip} --port #{mbus.server.port} scan --start #{mbus.scan.start} --end #{mbus.scan.end}
 ```  
 
+</details>
+<br>
+
 __Facts:__  
-- `mbus.server.ip`: Target M-Bus-over-TCP gateway IP address
-- `mbus.server.port`: Target M-Bus-over-TCP port (default 5000)
-- `mbus.scan.start`: First primary address in the scan range
-- `mbus.scan.end`: Last primary address in the scan range
+| Name | Description | Type |
+|:-----|:------------|:----:|
+| `mbus.server.ip` | Target M-Bus-over-TCP gateway IP address | string |
+| `mbus.server.port` | Target M-Bus-over-TCP port (default 5000) | int |
+| `mbus.scan.start` | First primary address in the scan range | int |
+| `mbus.scan.end` | Last primary address in the scan range | int |
+
 #### M-Bus - Application Reset
 Send an M-Bus application reset (SND_UD, CI 0x50) to a meter, resetting its
 application state / selection. Disrupts the meter's current operation.
-  
 
-__Usage:__  
-linux: (sh)  
-```
-COMMAND>> ./mbus_cli #{mbus.server.ip} --port #{mbus.server.port} app-reset #{mbus.address}
+__Ability Command:__
+<details open>
+<summary>Windows (psh)</summary>
+<br>
 
+```caldera
+.\mbus_cli.exe #{mbus.server.ip} --port #{mbus.server.port} app-reset #{mbus.address}
 ```  
 
-__Facts:__  
-- `mbus.server.ip`: Target M-Bus-over-TCP gateway IP address
-- `mbus.server.port`: Target M-Bus-over-TCP port (default 5000)
-- `mbus.address`: M-Bus primary address of the meter
-windows: (psh)  
-```
-COMMAND>> .\mbus_cli.exe #{mbus.server.ip} --port #{mbus.server.port} app-reset #{mbus.address}
+</details>
+<details>
+<summary>Linux (sh)</summary>
+<br>
 
+```caldera
+./mbus_cli #{mbus.server.ip} --port #{mbus.server.port} app-reset #{mbus.address}
 ```  
 
-__Facts:__  
-- `mbus.server.ip`: Target M-Bus-over-TCP gateway IP address
-- `mbus.server.port`: Target M-Bus-over-TCP port (default 5000)
-- `mbus.address`: M-Bus primary address of the meter
-darwin: (sh)  
-```
-COMMAND>> ./mbus_cli_darwin #{mbus.server.ip} --port #{mbus.server.port} app-reset #{mbus.address}
+</details>
+<details>
+<summary>Darwin (sh)</summary>
+<br>
 
+```caldera
+./mbus_cli_darwin #{mbus.server.ip} --port #{mbus.server.port} app-reset #{mbus.address}
 ```  
 
+</details>
+<br>
+
 __Facts:__  
-- `mbus.server.ip`: Target M-Bus-over-TCP gateway IP address
-- `mbus.server.port`: Target M-Bus-over-TCP port (default 5000)
-- `mbus.address`: M-Bus primary address of the meter
+| Name | Description | Type |
+|:-----|:------------|:----:|
+| `mbus.server.ip` | Target M-Bus-over-TCP gateway IP address | string |
+| `mbus.server.port` | Target M-Bus-over-TCP port (default 5000) | int |
+| `mbus.address` | M-Bus primary address of the meter | int |
+
 #### M-Bus - Broadcast Reset (DoS)
 Send a broadcast SND_NKE (address 0xFF) to re-initialize every slave on the
 segment at once. Directed at all meters, this is a denial-of-service primitive
 against an M-Bus bus or TCP/M-Bus gateway.
-  
 
-__Usage:__  
-linux: (sh)  
-```
-COMMAND>> ./mbus_cli #{mbus.server.ip} --port #{mbus.server.port} broadcast-reset
+__Ability Command:__
+<details open>
+<summary>Windows (psh)</summary>
+<br>
 
+```caldera
+.\mbus_cli.exe #{mbus.server.ip} --port #{mbus.server.port} broadcast-reset
 ```  
 
-__Facts:__  
-- `mbus.server.ip`: Target M-Bus-over-TCP gateway IP address
-- `mbus.server.port`: Target M-Bus-over-TCP port (default 5000)
-windows: (psh)  
-```
-COMMAND>> .\mbus_cli.exe #{mbus.server.ip} --port #{mbus.server.port} broadcast-reset
+</details>
+<details>
+<summary>Linux (sh)</summary>
+<br>
 
+```caldera
+./mbus_cli #{mbus.server.ip} --port #{mbus.server.port} broadcast-reset
 ```  
 
-__Facts:__  
-- `mbus.server.ip`: Target M-Bus-over-TCP gateway IP address
-- `mbus.server.port`: Target M-Bus-over-TCP port (default 5000)
-darwin: (sh)  
-```
-COMMAND>> ./mbus_cli_darwin #{mbus.server.ip} --port #{mbus.server.port} broadcast-reset
+</details>
+<details>
+<summary>Darwin (sh)</summary>
+<br>
 
+```caldera
+./mbus_cli_darwin #{mbus.server.ip} --port #{mbus.server.port} broadcast-reset
 ```  
 
+</details>
+<br>
+
 __Facts:__  
-- `mbus.server.ip`: Target M-Bus-over-TCP gateway IP address
-- `mbus.server.port`: Target M-Bus-over-TCP port (default 5000)
+| Name | Description | Type |
+|:-----|:------------|:----:|
+| `mbus.server.ip` | Target M-Bus-over-TCP gateway IP address | string |
+| `mbus.server.port` | Target M-Bus-over-TCP port (default 5000) | int |
 
 ### Source Code
 The source code for the M-Bus plugin can be found inside this plugin's [src directory](/src/).
